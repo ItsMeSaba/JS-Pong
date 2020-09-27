@@ -1,0 +1,131 @@
+/*
+* Prefixed by https://autoprefixer.github.io
+* PostCSS: v7.0.29,
+* Autoprefixer: v9.7.6
+* Browsers: last 4 version
+*/
+
+/* prefixed by https://autoprefixer.github.io (PostCSS: v7.0.26, autoprefixer: v9.7.3) */
+
+:root {
+    --bodyHeight : 0;
+}
+
+* {
+    padding: 0;
+    margin: 0;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    -webkit-user-select: none;
+       -moz-user-select: none;
+        -ms-user-select: none;
+            user-select: none;
+}
+
+body {
+    background-color: rgb(40, 40, 40);
+    overflow: hidden;
+}
+
+.container {
+    width: 100vw;
+    height: var(--bodyHeight);
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-pack: space-evenly;
+        -ms-flex-pack: space-evenly;
+            justify-content: space-evenly;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+}
+
+.container div {
+    display: none;
+}
+
+.container canvas {
+    display: block;
+    width: 90vw;
+    /* margin: auto; */
+    border: solid 1px white;
+}
+
+.end {
+    /* display: flex; */
+    display: none;  
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: var(--bodyHeight);
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: space-evenly;
+        -ms-flex-pack: space-evenly;
+            justify-content: space-evenly;
+    background-color: rgba(0, 0, 0, .6);
+    color: white;
+    font-size: 2.5rem;
+}
+
+.end .box {
+    /* display: flex; */
+    height: 30vh;
+    width: 70vw;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -ms-flex-pack: distribute;
+        justify-content: space-around;
+    text-align: center;
+}
+
+.end .box button {
+    width: 50%;
+    margin: auto;
+    padding: 10px 30px;
+    background-color: transparent;
+    border: solid 2px red;
+    color: white;
+    cursor: pointer;
+    outline: none;
+    -webkit-transition: .5s transform;
+    -o-transition: .5s transform;
+    transition: .5s transform;
+}
+
+.end .box button:active {
+    -webkit-transform: translate(4px, 4px);
+        -ms-transform: translate(4px, 4px);
+            transform: translate(4px, 4px);
+}
+
+@media (max-width: 760px) {
+    .container div {
+        display: block;
+        width: 100%;
+        text-align: center;
+    }
+
+    .container div button {
+        width: 20%;
+        height: 50px;
+        margin: 0 20px;
+        background-color: transparent;
+        border: solid 2px red;
+        color: white;
+        cursor: pointer;
+        outline: none;
+    }
+
+    .container div button:active {
+        border: solid 2px green;
+    }
+}

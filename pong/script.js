@@ -119,6 +119,7 @@ class Ball {
         this.radius = 10;
         this.x = canvas.width/2;
         this.y = canvas.height/2;
+        this.ball = [{ x : canvas.width/2, y : canvas.height/2 }]
         this.speedX = this.radius;
         this.speedY = 1;
         this.interval = 1000/60;
@@ -126,11 +127,13 @@ class Ball {
     }
 
     draw() {
-        ctx.beginPath();
-        ctx.arc(this.x, this.y, this.radius, 0, 2*Math.PI);
-        ctx.fillStyle = "white";
-        ctx.fill();
-        ctx.closePath();
+        this.ball.forEach((ball, index) => {
+            ctx.beginPath();
+            ctx.arc(ball.x, ball.y, this.radius - index*.75, 0, 2*Math.PI);
+            ctx.fillStyle = `rgba(255, 255, 255, ${1 - index*0.1})`;
+            ctx.fill();
+            ctx.closePath();
+        })
     }
     
     win(winner) {
@@ -139,6 +142,8 @@ class Ball {
         this.won = true;
         return true;
     }
+
+    
 
     collision() {
         if(this.x + this.radius >= canvas.width) {
@@ -155,7 +160,7 @@ class Ball {
         if(this.y - this.radius <= 0) this.speedY *= -1; 
 
 
-        let ballChangeY = (owner) => {
+        let ballChangeY = owner => {
             if(owner.up && this.speedY < 0) {
                 this.speedY = Math.floor(Math.random() * -1) - 3;
             }
@@ -169,11 +174,11 @@ class Ball {
             }
         }
 
-        let ballChangeX = () => {
-            if(Math.abs(this.speedX) < 0) this.speedX *= -1.03;
-            else this.speedX *= -1;
-            console.log(this.speedX)
-        }
+        // let ballChangeX = () => {
+        //     if(Math.abs(this.speedX) < 0) this.speedX *= -1.03;
+        //     else this.speedX *= -1;
+        //     console.log(this.speedX)
+        // }
 
         if(player.x + player.width >= this.x - this.radius) {
             if(player.y <= this.y && player.y + player.height >= this.y) {
@@ -194,16 +199,31 @@ class Ball {
         }
     }
 
+    drawLine() {
+        ctx.beginPath();
+        ctx.moveTo(canvas.width/2, 0);
+        ctx.lineTo(canvas.width/2, canvas.height);
+        ctx.strokeStyle = 'white';
+        ctx.stroke();
+        ctx.closePath();
+    }
+
     move() {
         this.interval *= 0.9999;
                 
         ctx.clearRect(0, 0, canvas.width, canvas.height);
 
+        
+        this.drawLine()
         this.x += this.speedX;
         this.y += this.speedY;
+        
+        this.ball.unshift({ x : this.x, y : this.y});
 
+        if(this.ball.length > 11) this.ball.pop();
+ 
         this.collision();
-        this.draw();
+        this.draw(); 
 
         bot.move();
 
@@ -215,6 +235,7 @@ class Ball {
         }        
     }
 }
+
 
 let ball = new Ball();
 

@@ -9,7 +9,7 @@ document.getElementById('restart').addEventListener('click', () => location.relo
 
 class Player {
     constructor() {
-        this.width = 20;
+        this.width = 10;
         this.height = 110;
         this.x = 0;
         this.y = canvas.height/2 - this.height/2 ;
@@ -67,7 +67,7 @@ player.move_events();
 
 class Bot {
     constructor() {
-        this.width = 20;
+        this.width = 10;
         this.height = 110;
         this.x = canvas.width - this.width;
         this.y = canvas.height/2 - 110/2 ;
@@ -143,7 +143,7 @@ class Ball {
         return true;
     }
 
-    
+
 
     collision() {
         if(this.x + this.radius >= canvas.width) {

@@ -116,7 +116,7 @@ bot.draw();
 
 class Ball {
     constructor() {
-        this.radius = 10;
+        this.radius = 9;
         this.x = canvas.width/2;
         this.y = canvas.height/2;
         this.ball = [{ x : canvas.width/2, y : canvas.height/2 }]
@@ -124,12 +124,26 @@ class Ball {
         this.speedY = 1;
         this.interval = 1000/60;
         this.won = false;
+        this.rgb = {
+            r : 255,
+            g : 255,
+            b : 255,
+            setRgb : function() {
+                let rand = () => Math.floor(Math.random() * 206) + 50;
+
+                this.r = rand(); 
+                this.g = rand();
+                this.b = rand();
+            }
+        }
     }
 
     draw() {
         this.ball.forEach((ball, index) => {
             ctx.beginPath();
-            ctx.arc(ball.x, ball.y, this.radius - index*.75, 0, 2*Math.PI);
+            // ctx.arc(ball.x, ball.y, this.radius - index*.75, 0, 2*Math.PI);
+            ctx.arc(ball.x, ball.y, this.radius, 0, 2*Math.PI);
+            // ctx.fillStyle = `rgba(${this.rgb.r}, ${this.rgb.g}, ${this.rgb.b}, ${1 - index*0.1})`;
             ctx.fillStyle = `rgba(255, 255, 255, ${1 - index*0.1})`;
             ctx.fill();
             ctx.closePath();
@@ -185,6 +199,8 @@ class Ball {
                 this.speedX *= -1;
                 ballChangeY(player);
 
+                this.rgb.setRgb();
+                
                 return true;
             }
         }
@@ -194,6 +210,8 @@ class Ball {
                 this.speedX *= -1;
                 ballChangeY(bot);
              
+                this.rgb.setRgb();
+
                 return true;
             }
         }

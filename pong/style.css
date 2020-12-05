@@ -22,7 +22,7 @@
 }
 
 body {
-    background-color: rgb(40, 40, 40);
+    background-color: rgb(55, 55, 55);
     overflow: hidden;
 }
 
@@ -49,10 +49,13 @@ body {
 }
 
 .container canvas {
+    background-color: rgb(40, 40, 40);
     display: block;
     width: 90vw;
     /* margin: auto; */
-    border: solid 1px white;
+    /* border: solid 1px white; */
+    border-radius: 5px;
+    box-shadow: 0 0 20px rgba(0, 0, 0);
 }
 
 .end {
